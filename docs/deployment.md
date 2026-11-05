@@ -21,3 +21,17 @@ Vercel 团队权限由用户授权。其 Git 集成目前返回 `github_response
 浏览器本地数据按站点 origin 隔离；本地开发、预览 URL 和正式域名之间不会自动同步设置或贴纸。
 
 语音使用设备本地中文音色。部署成功与 Web Speech 调用测试通过不代表所有终端都安装了中文语音；真机需检查音量、浏览器兼容性及系统音色。
+
+## 已发布站点
+
+发布代码：`c121eb97a9aa8c5bb4b57c722577c1db5c2fe80d`；目标：production；状态：三个项目均 READY；框架：Vite 静态产物。
+
+| 作品       | 正式地址                                  | Vercel 项目 ID                   | 部署 ID                          |
+| ---------- | ----------------------------------------- | -------------------------------- | -------------------------------- |
+| 买车测评   | https://fungame-car-fit.vercel.app        | prj_yPkscQahaRhqSBeRr6M108UY1QyH | dpl_5s5pVdpRTy3tMua4ujosvn14RKbB |
+| 今日已赚   | https://fungame-daily-earnings.vercel.app | prj_sQAA1LXQI05YDt5pvD1553ccFWgJ | dpl_EN98gcdG2cp5UTVLWyKnEGN7tggq |
+| 身体探险队 | https://fungame-little-doctor.vercel.app  | prj_BXz6BHCVSn4QwdNQmziwY8PGLzgW | dpl_Fpv582k3EnRZAcT8hNNDQEo1kuwT |
+
+验证：本地生产构建通过 26 项单元测试和 13 条端到端流程测试，包含 PC / H5、隐私、配置、断网及语音调用 / 重播 / 关闭。使用 Vercel 授权访问工具检查了三个正式地址的 HTML 和全部 JS / CSS 文件，全部 HTTP 200；本记录不把授权访问等同于匿名可访问，也不把模拟语音测试等同于真机听感验证。
+
+团队默认部署保护保持不变，未放宽权限、未配置远程行为采集。站点是纯静态应用，未添加函数运行时或日志采集服务。
