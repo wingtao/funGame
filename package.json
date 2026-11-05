@@ -7,7 +7,7 @@
     "pnpm": ">=11"
   },
   "scripts": {
-    "dev": "pnpm --filter ./apps/* --parallel --if-present dev",
+    "dev": "pnpm --filter './apps/*' --parallel --if-present dev",
     "build": "pnpm -r --if-present build",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "pnpm lint:prepare && eslint . --max-warnings 0",
@@ -16,10 +16,13 @@
     "check": "pnpm lint && pnpm typecheck && pnpm format:check",
     "new": "node scripts/create-project.mjs",
     "lint:fix": "pnpm lint:prepare && eslint . --fix --max-warnings 0",
-    "lint:prepare": "pnpm -r --if-present lint:prepare"
+    "lint:prepare": "pnpm -r --if-present lint:prepare",
+    "test": "pnpm -r --if-present test",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@fungame/config-eslint": "workspace:*",
+    "@playwright/test": "^1.64.1",
     "eslint": "^9.39.0",
     "prettier": "^3.6.2",
     "typescript": "~5.9.3"

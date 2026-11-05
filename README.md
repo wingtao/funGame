@@ -22,7 +22,7 @@ pnpm new wxt-extension my-extension
 
 ## 目录
 
-- `apps/`：独立作品，初始为空。
+- `apps/`：独立作品；当前包含可独立运行的买车测评与今日已赚，以及对应产品、技术和风格文档。
 - `templates/react-site/`：React + Vite + Tailwind CSS 4，预置 shadcn 风格 Button、Radix Slot、Lucide 与组件生成配置。
 - `templates/phaser-game/`：React + Vite + Phaser，包含可交互的点击得分示例。
 - `templates/wxt-extension/`：WXT + React，Manifest V3，包含弹窗示例。
@@ -47,7 +47,7 @@ pnpm format                     # 格式化
 
 ## 选型与约定
 
-- 默认 TypeScript、纯前端与本地存储。需要账号、云同步时再加入 Supabase；付费 API 密钥放服务端。
+- 以 TypeScript 为主。首批买车测评、今日已赚必须为纯前端静态网站：计算与分享图片在本机完成，localStorage 保存设置，不依赖后端、数据库、云同步或远程计算接口。其他作品如确有服务端需求，再单独确定架构。
 - 默认网站组件方案为 shadcn/ui + Radix。可在具体作品目录执行 `pnpm dlx shadcn@latest add dialog` 等命令。Mantine、Ant Design、React Aria、DaisyUI 由各作品按需选用。
 - 动画按需选 Motion；图表选 Recharts / ECharts；拖拽选 dnd-kit；音效选 Howler.js；自定义 2D 渲染选 PixiJS，3D 选 Three.js + React Three Fiber。
 - 简单游戏直接用 React / Canvas，复杂 2D 游戏使用 Phaser。
@@ -58,3 +58,36 @@ pnpm format                     # 格式化
 ## TypeScript 与 Lint 规范
 
 业务代码默认使用 TypeScript。规则和示例见 [代码质量规范](docs/code-quality.md)。使用 `pnpm lint:fix` 自动修复，`pnpm check` 执行与 CI 相同的检查。
+
+## 设计风格规范
+
+买车测评采用手绘贴纸风，今日已赚采用温暖二维打工小剧场。配色、角色、布局、动效、文案及验收要求见 [设计风格规范](docs/design-style.md)。
+
+## 首批作品
+
+| 作品           | 产品方案                                               | 设计风格                                                       | 状态       |
+| -------------- | ------------------------------------------------------ | -------------------------------------------------------------- | ---------- |
+| 买车前，先算算 | [产品设计](apps/car-fit/docs/product-design.md)        | [手绘贴纸风](apps/car-fit/docs/design-style.md)                | 首版可运行 |
+| 今日已赚       | [产品设计](apps/daily-earnings/docs/product-design.md) | [温暖二维打工小剧场](apps/daily-earnings/docs/design-style.md) | 首版可运行 |
+
+运行 `pnpm dev` 同时启动各作品：买车测评 http://localhost:5173，今日已赚 http://localhost:5174，身体探险队 http://localhost:5175。各作品的运行与部署说明见对应 README。
+
+## 技术方案
+
+首批作品遵循 [纯前端技术基线](docs/frontend-architecture.md)。具体实施方案：[买车测评](apps/car-fit/docs/technical-design.md) · [今日已赚](apps/daily-earnings/docs/technical-design.md)。
+
+## 验证首批作品
+
+```sh
+pnpm check
+pnpm test
+pnpm build
+pnpm exec playwright install chromium
+pnpm test:e2e
+```
+
+端到端测试运行构建后的静态站点，覆盖问答、预算对比、工资计时、隐私、断网分享与本机存储降级。CI 执行相同检查；已有系统 Chromium 时可设置 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 指定路径。
+
+## 身体探险队
+
+新增 PC / H5 亲子模拟扫描小游戏：[运行说明](apps/little-doctor/README.md) · [产品设计](apps/little-doctor/docs/product-design.md) · [技术方案](apps/little-doctor/docs/technical-design.md) · [设计风格](apps/little-doctor/docs/design-style.md)。
